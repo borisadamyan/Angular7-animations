@@ -47,7 +47,7 @@ h1 {
 }
 
 .body-blur {
-    background: $bg, url('/assets/images/blurbg.jpg'), no-repeat top center !important;
+    background: $bg url('/assets/images/blurbg.jpg') no-repeat top center !important;
     background-size: 90% !important;
     height:100%;
 }
