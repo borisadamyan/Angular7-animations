@@ -6,7 +6,7 @@ const post = require('../models/post');
 const db = "mongodb://Boris:testboris1@ds141815.mlab.com:41815/codepostnet";
 
 mongoose.Promise = global.Promise;
-mongoose.connect(db, function(err) {
+mongoose.connect(db, { useNewUrlParser: true }, function(err) {
     if(err) {
         console.log('Connection error');
     }

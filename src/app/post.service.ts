@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {Post} from './post';
-import {map} from "rxjs/internal/operators";
+import {map} from 'rxjs/internal/operators';
 
 @Injectable()
 export class PostService {
@@ -12,28 +12,32 @@ export class PostService {
     }
 
     getPosts() {
-        return this._http.get("/api/posts")
+        return this._http.get('/api/posts')
             .pipe(
-                map(result => this.result = result.json())
-            )
+                map(result => {
+                    console.log(JSON.parse(result['_body']));
+                    this.result = result.json();
+                    return this.result;
+                })
+            );
     }
 
     getPost(id) {
-        return this._http.get("/api/details/" + id)
+        return this._http.get('/api/details/' + id)
             .pipe(
                 map(result => this.result = result.json())
-            )
+            );
 
     }
 
     insertPost(post: Post) {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        const headers = new Headers({'Content-Type': 'application/json'});
+        const options = new RequestOptions({headers: headers});
 
         return this._http.post('/api/posts', JSON.stringify(post), options)
             .pipe(
                 map(result => this.result = result.json())
-            )
+            );
     }
 
 
